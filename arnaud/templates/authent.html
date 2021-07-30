@@ -1,5 +1,45 @@
+<html>
+<head>
+    <style>
+        .global {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+        }
+        .pass {
+            width: 100%;
+            height: 180px;
+        }
+        .select {
+            width: 50%;
+            height: 80px;
+            font-size:24px;
+            text-align: center;
+        }
+        .validate {
+            width: 30%;
+            height: 10%;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor:pointer;
+            background-color:#4CAF50;
+        }
+    </style>
+</head>
+
+<body>
+<div class="global">
 <form action="/brocante/" method="post">
-    <p>Nom : <input type="text" name="nom" id="nom"></p>
-    <p>Mot de passe : <input type="password" name="password", id="password"></p>
-    <p><input type="submit" value="OK"></p>
+    <p class="pass">Mot de passe permettant d'accéder au Site :<br> <input type="password" name="password", id="password" class="select"></p>
+    <p>Choisissez un Nom d'utilisateur :<br> <input type="text" name="nom" id="nom" class="select"></p>
+    <p><input type="submit" value="Valider" class="validate"></p>
 </form>
+    </div>
+</body>
+</html>
