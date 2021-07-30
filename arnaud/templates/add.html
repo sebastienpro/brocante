@@ -4,8 +4,16 @@
     <style>
         .add-form {
             width: 100%;
-            height: 100%;
+            height: 80%;
             text-align: center;
+        }
+        .send {
+            background-color: darkgreen;
+            height: 20%;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 25px;
         }
         .ok {
             display: inline-block;
@@ -60,5 +68,10 @@
         <p><input type="submit" value="OK" class="ok"></p>
     </form>
 </div>
+{% if send == True %}
+<div class="send">
+    Envoie Réussi
+</div>
+{% endif %}
 </body>
 </html>
