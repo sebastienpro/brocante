@@ -20,6 +20,7 @@
             padding: 10px;
         }
         .back {
+            display: inline-block;
             background-color: cornflowerblue;
             color: white;
             padding: 15px 25px;
@@ -46,7 +47,7 @@
 <div class="main">
     <p class="center">
         <a href="{{request.get_full_path}}?page=previous" class="back">Precedente</a>
-        <a href="/brocante/" class="back" style="background-color: darkgray">Retour</a>
+        <a href="/brocante/" class="back" style="background-color: darkgray; width: 20%">Accueil</a>
         <a href="{{request.get_full_path}}?page=next" class="back">Suivante</a>
     </p>
     <p><img src="/photo/{{ image.image_name }}" class="image" /></p>
