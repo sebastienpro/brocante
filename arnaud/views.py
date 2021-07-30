@@ -124,6 +124,7 @@ def detail(request, image_id, user):
                 'image': image,
                 'is_interesting': is_interesting,
                 'interested': Interested.objects.filter(image=image),
+                'is_reserved': Interested.objects.filter(image=image).exclude(person=user).exists(),
                 'comments': comments
             }
         )
