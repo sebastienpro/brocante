@@ -11,7 +11,7 @@ from django.http import HttpResponse
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 
-from arnaud.models import Image, Person, Interested
+from arnaud.models import Image, Person, Interested, Comment
 from PIL import Image as PilImage, ExifTags
 
 
@@ -97,6 +97,9 @@ def detail(request, image_id, user):
                 image.persons.add(user)
             else:
                 image.persons.remove(user)
+        elif request.POST.get('action') == 'comment':
+            comment = request.POST['comment']
+            Comment.objects.create(text=comment, person=user, image=image)
 
     elif 'page' in request.GET:
         kind = request.GET['page']
@@ -112,11 +115,17 @@ def detail(request, image_id, user):
             else:
                 return redirect('detail', image_id=Image.objects.last().pk)
 
+    comments = Comment.objects.filter(image=image)
     return HttpResponse(
         render(
             request,
             "detail.html",
-            context={'image': image, 'is_interesting': is_interesting, 'interested': Interested.objects.filter(image=image)}
+            context={
+                'image': image,
+                'is_interesting': is_interesting,
+                'interested': Interested.objects.filter(image=image),
+                'comments': comments
+            }
         )
     )
 

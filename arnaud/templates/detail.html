@@ -44,6 +44,26 @@
             border-radius: 10px;
             cursor:pointer;
         }
+        .post-comment {
+            width: 30%;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 22px;
+            border-radius: 10px;
+            cursor:pointer;
+        }
+        .comment {
+            width: 80%;
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 5px;
+            text-align: left;
+            text-indent: 10px;
+        }
     </style>
 </head>
 <body>
@@ -54,6 +74,7 @@
         <a href="{{request.get_full_path}}?page=next" class="back">Suivante</a>
     </p>
     <p><img src="/photo/{{ image.image_name }}" class="image" /></p>
+    <p>
     <form action="" method="post">
         <input type="hidden" id="image_id" name="image_id" value="{{ image.id }}">
         <input type="hidden" id="action" name="action" value="interesting">
@@ -63,13 +84,29 @@
             <input type="submit" value="Finalement Non" class="interest" style="background-color:red;">
         {% endif %}
     </form>
-    <p>
-        <ul>
-        {% for int in interested %}
-            <li>- {{ int.person.name }} : {{ int.date_joined }}</li>
-        {% endfor %}
-        </ul>
     </p>
+    <p>
+    <ul>
+        {% for int in interested %}
+            <li> {{ int.person.name }} : {{ int.date_joined }}</li>
+        {% endfor %}
+    </ul>
+    </p>
+        <div class="comment">
+            {% for comment in comments %}
+                <p><i><b>{{ comment.person.name }}</b></i> : {{ comment.text }}</p>
+            {% endfor %}
+</div>
+    <p>
+    <form action="" method="post">
+        <input type="hidden" id="image_id" name="image_id" value="{{ image.id }}">
+        <input type="hidden" id="action" name="action" value="comment">
+        <textarea name="comment" id="comment" rows="5" cols="100"></textarea>
+        <br><br>
+        <input type="submit" value="Poster le commentaire" class="post-comment">
+    </form>
+    </p>
+    <br><br>
 </div>
 </body>
 </html>

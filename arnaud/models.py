@@ -13,3 +13,8 @@ class Interested(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     date_joined = models.DateTimeField(default=datetime.now())
+
+class Comment(models.Model):
+    text = models.TextField()
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
