@@ -66,7 +66,7 @@ def index(request):
                 render(request, "liste.html", context={'nom': nom, 'images': images})
             )
             response.set_cookie('nom', nom)
-            if not Person.objects.get(name=nom):
+            if not Person.objects.filter(name=nom).exists():
                 Person.objects.create(name=nom)
     else:
         if 'nom' not in request.COOKIES:
