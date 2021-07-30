@@ -21,8 +21,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('detail/<int:image_id>', views.detail, name='detail'),
-    path('add', views.add, name='add'),
-    path('admin/', admin.site.urls),
+    path('brocante/', views.index, name='index'),
+    path('brocante/detail/<int:image_id>', views.detail, name='detail'),
+    path('brocante/add', views.add, name='add'),
+    path('brocante/admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
