@@ -22,6 +22,12 @@
             height: auto;
             position: relative;
         }
+        .bd-red {
+            border-color: red;
+        }
+        .bd-green {
+            border-color: green;
+        }
     </style>
 </head>
 <body>
@@ -30,7 +36,11 @@
 
 <div class="liste">
     {% for img in images %}
-        <div class="elem">
+        {% if img.persons.all.count > 0 %}
+        <div class="elem bd-red">
+        {% else %}
+        <div class="elem bd-green">
+        {% endif %}
             <p>
                 <a href="/brocante/detail/{{ img.id }}">
                     <img src="/photo/thumbnail/{{ img.image_name }}" class="image">
