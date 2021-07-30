@@ -2,4 +2,4 @@
 
 set -e
 source venv/bin/activate
-exec gunicorn --bind=unix:/tmp/gunicorn.sock brocante.wsgi -t 0
+exec gunicorn --bind=unix:/tmp/gunicorn.sock -w 1 brocante.wsgi -t 0
