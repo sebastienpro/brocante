@@ -1,0 +1,67 @@
+<html>
+<head>
+    <style>
+        .main {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            align-content: center;
+            position: absolute;
+        }
+        .image {
+            max-height: 60vh;
+            max-width: 60vh;
+            overflow: auto;
+        }
+        .center {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+        }
+        .back {
+            background-color: cornflowerblue;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 30%;
+        }
+        .interest {
+            width: 30%;
+            height: 10%;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <p class="center"><a href="/" class="back">Retour</a></p>
+    <p><img src="/photo/{{ image.image_name }}" class="image" /></p>
+    <form action="" method="post">
+        <input type="hidden" id="image_id" name="image_id" value="{{ image.id }}">
+        <input type="hidden" id="action" name="action" value="interesting">
+        {% if is_interesting == False %}
+            <input type="submit" value="Ca m'interesse" class="interest" style="background-color:#4CAF50;">
+        {% else %}
+            <input type="submit" value="Finalement Non" class="interest" style="background-color:red;">
+        {% endif %}
+    </form>
+    <p>
+        <ul>
+        {% for int in interested %}
+            <li>- {{ int.person.name }} : {{ int.date_joined }}</li>
+        {% endfor %}
+        </ul>
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Vide Grenier de Céret</title>
+    <style>
+        .liste {
+            width: 100%;
+            height: 100%;
+        }
+        .elem {
+            margin: 15px;
+            position: relative;
+            float: left;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        .image {
+            max-width: 200px;
+            height: auto;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<h1>Vide Grenier de Céret</h1>
+<h3>Vous êtes connecté en tant que : {{ nom }}</h3>
+
+<div class="liste">
+    {% for img in images %}
+        <div class="elem">
+            <p>
+                <a href="/detail/{{ img.id }}">
+                    <img src="/photo/thumbnail/{{ img.image_name }}" class="image">
+                </a>
+            </p>
+            <p>
+                {% for pers in img.persons.all %}
+                    - {{ pers.name }}<br>
+                {% endfor %}
+            </p>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
