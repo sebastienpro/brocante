@@ -8,6 +8,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.http import HttpResponse
+from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 
 from arnaud.models import Image, Person, Interested
@@ -79,6 +80,7 @@ def index(request):
             )
     return response
 
+@cache_page(60 * 15)
 @get_user_from_cookie
 @csrf_exempt
 def detail(request, image_id, user):
