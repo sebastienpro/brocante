@@ -3,7 +3,7 @@ import os
 
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -80,7 +80,6 @@ def index(request):
             )
     return response
 
-@cache_page(60 * 15)
 @get_user_from_cookie
 @csrf_exempt
 def detail(request, image_id, user):
@@ -94,6 +93,20 @@ def detail(request, image_id, user):
                 image.persons.add(user)
             else:
                 image.persons.remove(user)
+
+    elif 'page' in request.GET:
+        kind = request.GET['page']
+        if kind == 'next':
+            images = Image.objects.filter(id__gt=image_id).order_by('id')
+        elif kind == 'previous':
+            images = Image.objects.filter(id__lt=image_id).order_by('-id')
+        if images.exists():
+            return redirect('detail', image_id=images[0].pk)
+        else:
+            if kind == 'next':
+                return redirect('detail', image_id=Image.objects.first().pk)
+            else:
+                return redirect('detail', image_id=Image.objects.last().pk)
 
     return HttpResponse(
         render(
