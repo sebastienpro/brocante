@@ -66,7 +66,8 @@ def index(request):
                 render(request, "liste.html", context={'nom': nom, 'images': images})
             )
             response.set_cookie('nom', nom)
-            Person.objects.create(name=nom)
+            if not Person.objects.get(name=nom):
+                Person.objects.create(name=nom)
     else:
         if 'nom' not in request.COOKIES:
             response =  HttpResponse(render(request, "authent.html"))
