@@ -64,6 +64,17 @@
             text-align: left;
             text-indent: 10px;
         }
+        .container {
+            width: 100%;
+            text-align: center;
+        }
+        .commentarea {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 80%;
+            resize : none;
+        }
     </style>
 </head>
 <body>
@@ -94,16 +105,19 @@
         {% endfor %}
     </ul>
     </p>
-        <div class="comment">
-            {% for comment in comments %}
-                <p><i><b>{{ comment.person.name }}</b></i> : {{ comment.text }}</p>
-            {% endfor %}
-</div>
+    <div><b>Commentaires:</b></div>
+    <div class="comment">
+        {% for comment in comments %}
+            <p><i><b>{{ comment.person.name }}</b></i> : {{ comment.text }}</p>
+        {% endfor %}
+    </div>
     <p>
     <form action="" method="post">
         <input type="hidden" id="image_id" name="image_id" value="{{ image.id }}">
         <input type="hidden" id="action" name="action" value="comment">
-        <textarea name="comment" id="comment" rows="5" cols="100"></textarea>
+        <div class="container">
+            <textarea name="comment" id="comment" rows="5" class="commentarea"></textarea>
+        </div>
         <br><br>
         <input type="submit" value="Poster le commentaire" class="post-comment">
     </form>
