@@ -10,7 +10,7 @@
         }
         .image {
             max-height: 60vh;
-            max-width: 60vh;
+            max-width: 100%;
             overflow: auto;
         }
         .center {
@@ -32,7 +32,7 @@
             font-size: 22px;
         }
         .interest {
-            width: 30%;
+            width: 40%;
             height: 10%;
             border: none;
             color: white;
@@ -75,6 +75,15 @@
             width: 80%;
             resize : none;
         }
+        .reservations {
+            width: 80%;
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 5px;
+            text-align: center;
+            text-indent: 10px;
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
@@ -85,28 +94,29 @@
         <a href="{{request.get_full_path}}?page=next" class="back">Suivante</a>
     </p>
     <p><img src="/photo/{{ image.image_name }}" class="image" /></p>
-    <p>
+
     <form action="" method="post">
         <input type="hidden" id="image_id" name="image_id" value="{{ image.id }}">
         <input type="hidden" id="action" name="action" value="interesting">
         {% if is_interesting == True %}
-            <input type="submit" value="Finalement Non" class="interest" style="background-color:red;">
+            <input type="submit" value="Cliquer pour Annuler la Réservation" class="interest" style="background-color:red;">
         {% elif is_reserved == True %}
-            <input type="submit" value="Article déjà pris mais je m'ajoute au cas ou" class="interest" style="background-color:orange;">
+            <p>Cet Objet est déjà réservé par quelqu'un d'autre</p>
+            <p><input type="submit" value="Cliquer pour Réserver quand même" class="interest" style="background-color:orange;"></p>
         {% else %}
-            <input type="submit" value="Ca m'interesse" class="interest" style="background-color:#4CAF50;">
+            <input type="submit" value="Cliquer pour Réserver" class="interest" style="background-color:#4CAF50;">
         {% endif %}
     </form>
-    </p>
-    <p>
-    <ul>
+
+    <div class="reservations">
+        <h3>Liste des personnes ayant réservé:</h3>
         {% for int in interested %}
-            <li> {{ int.person.name }} : {{ int.date_joined }}</li>
+            <p>{{ forloop.counter }} - {{ int.person.name }}</p>
         {% endfor %}
-    </ul>
-    </p>
-    <div><b>Commentaires:</b></div>
+    </div>
+
     <div class="comment">
+        <div style="text-align: center"><h3>Commentaires:</h3></div>
         {% for comment in comments %}
             <p><i><b>{{ comment.person.name }}</b></i> : {{ comment.text }}</p>
         {% endfor %}

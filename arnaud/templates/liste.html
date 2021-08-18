@@ -16,6 +16,7 @@
             float: left;
             border: 1px solid black;
             border-radius: 5px;
+            height: 250px;
         }
         .image {
             max-width: 200px;
@@ -46,10 +47,10 @@
                     <img src="/photo/thumbnail/{{ img.image_name }}" class="image">
                 </a>
             </p>
-            <p>
-                {% for pers in img.persons.all %}
-                    - {{ pers.name }}<br>
-                {% endfor %}
+            <p style="text-align: center">
+                {% if img.persons.first %}
+                    reservé pour {{ img.persons.first.name }}<br>
+                {% endif %}
             </p>
         </div>
     {% endfor %}
