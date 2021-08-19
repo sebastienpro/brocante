@@ -42,12 +42,12 @@
         {% else %}
         <div class="elem bd-green">
         {% endif %}
-            <p>
+            <div style="margin-top:10px;">
                 <a href="/brocante/detail/{{ img.id }}">
                     <img src="/photo/thumbnail/{{ img.image_name }}" class="image">
                 </a>
-            </p>
-            <p style="text-align: center">
+            </div>
+            <p style="text-align: center; margin:2px;">
                 {% if img.persons.first %}
                     reservé pour {{ img.persons.first.name }}<br>
                 {% endif %}
