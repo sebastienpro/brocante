@@ -100,7 +100,6 @@ def detail(request, image_id, user):
         elif request.POST.get('action') == 'comment':
             comment = request.POST['comment']
             Comment.objects.create(text=comment, person=user, image=image)
-        print("JE SUIS DANS LE POST")
         return redirect('detail', image_id=image_id)
 
     elif 'page' in request.GET:

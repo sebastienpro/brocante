@@ -42,7 +42,12 @@
         {% else %}
         <div class="elem bd-green">
         {% endif %}
-            <div style="margin-top:10px;">
+            <div style="height: 15px;text-align: center;font-size: 12px">
+                {% if img.comment_set.first %}
+                    Commentaires
+                {% endif %}
+            </div>
+            <div>
                 <a href="/brocante/detail/{{ img.id }}">
                     <img src="/photo/thumbnail/{{ img.image_name }}" class="image">
                 </a>
